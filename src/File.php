@@ -21,8 +21,11 @@ class File {
         return basename($this->path);
     }
 
-    public function isExisting(){
+    public function isExisting() : bool{
         return file_exists($this->path);
+    }
+    public function isReadable() : bool{
+        return is_readable($this->path);
     }
 
     public function create(){
