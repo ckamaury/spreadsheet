@@ -2,6 +2,7 @@
 
 namespace CkAmaury\SpreadsheetTests;
 
+use CkAmaury\Spreadsheet\CsvFile;
 use CkAmaury\Spreadsheet\File;
 use PHPUnit\Framework\TestCase;
 
@@ -39,8 +40,39 @@ class FileTest extends TestCase {
 
         $file_copy->delete();
         self::assertFileDoesNotExist($file_path);
+    }
 
-        rmdir($this->getTempPath());
+    public function testBasicFunctionsFileWriterAndReader(): void{
+        $text = "TEST";
+
+        $file = new File($this->getTempPath().'test.txt');
+        $file->putContents($text,LOCK_EX);
+        self::assertSame($file->getContents(),$text);
+    }
+
+    public function testBasicFunctionsFileCsv(): void{
+        $data = array(
+            [
+                'name' => 'DOE    ',
+                'first_name' => '    JOHN'
+            ],
+            [
+                'name' => 'DUPONT',
+                'first_name' => 'JEAN '
+            ],
+            [
+                'name' => '    MARTINEZ',
+                'first_name' => 'JUAN'
+            ],
+        );
+
+        $csv = new CsvFile($this->getTempPath().'test.csv');
+
+        $csv->putDataWithHeaders($data);
+        self::assertSameSize($data,$csv->getDataWithHeaders());
+
+        $csv->putData($data);
+        self::assertNotSameSize($data,$csv->getDataWithHeaders());
     }
 
 }

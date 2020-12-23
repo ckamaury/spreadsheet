@@ -8,16 +8,21 @@
             "name": "Romain FRANCOIS"
         }
     ],
-    "autoload": {
-        "psr-4": {
-            "CkAmaury\\Spreadsheet\\": "src"
-        }
-    },
     "require": {
         "phpoffice/phpspreadsheet": "^1.15",
         "php": "^7.4||^8.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "CkAmaury\\Spreadsheet\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CkAmaury\\SpreadsheetTests\\": "tests/SpreadhseetTests"
+        }
     }
 }
