@@ -1,6 +1,7 @@
 {
     "name": "ckamaury/spreadsheet",
     "description": "PHP spreadsheet facilitator for export in CSV / XLSX based on PHPOffice/PhpSpreadsheet",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
