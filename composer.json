@@ -2,8 +2,6 @@
     "name": "ckamaury/spreadsheet",
     "description": "PHP spreadsheet facilitator for export in CSV / XLSX based on PHPOffice/PhpSpreadsheet",
     "license": "MIT",
-    "version": "1.0.0",
-    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Romain FRANCOIS"
