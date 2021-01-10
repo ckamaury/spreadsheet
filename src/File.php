@@ -102,8 +102,25 @@ class File {
             $this->fileputter = null;
         }
     }
-    public function putContents($text,int $flags = 0){
-        file_put_contents($this->path, $text, $flags);
+    public function putContents($text,int $flags = 0):bool{
+        return (file_put_contents($this->path, $text, $flags) !== FALSE);
+    }
+    public function download(string $url){
+        $contextOptions = array(
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+            ),
+        );
+        $contents = file_get_contents(
+            $url,
+            false,
+            stream_context_create($contextOptions)
+        );
+
+        if(!$this->putContents($contents)) {
+            throw new \Exception('Downloading is unsuccessful.');
+        }
     }
 
     //####### READER #######
