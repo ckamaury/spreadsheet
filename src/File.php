@@ -105,7 +105,7 @@ class File {
     public function putContents($text,int $flags = 0):bool{
         return (file_put_contents($this->path, $text, $flags) !== FALSE);
     }
-    public function download(string $url){
+    public function download(string $url,?bool $forceUtf8 = false){
         $contextOptions = array(
             "ssl" => array(
                 "verify_peer" => false,
@@ -117,8 +117,11 @@ class File {
             false,
             stream_context_create($contextOptions)
         );
+        if($forceUtf8){
+            $contents = utf8_encode($contents);
+        }
 
-        if(!$this->putContents(utf8_encode($contents))) {
+        if(!$this->putContents($contents)) {
             throw new \Exception('Downloading is unsuccessful.');
         }
     }

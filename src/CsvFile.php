@@ -63,6 +63,18 @@ class CsvFile extends File {
         }
         return $row;
     }
+    public function getRow(int $rowNumber){
+
+        if($rowNumber >= $this->row_current_number){
+            $this->openReader();
+        }
+
+        do{
+            $row = $this->getNextRow();
+        }while($this->row_current_number != $rowNumber || $row !== FALSE);
+
+        return $row;
+    }
 
     private function sanitizeRow(array &$row){
         foreach($row as &$value){
