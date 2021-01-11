@@ -118,7 +118,7 @@ class File {
             stream_context_create($contextOptions)
         );
 
-        if(!$this->putContents($contents)) {
+        if(!$this->putContents(utf8_encode($contents))) {
             throw new \Exception('Downloading is unsuccessful.');
         }
     }

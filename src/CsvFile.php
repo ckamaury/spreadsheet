@@ -41,7 +41,10 @@ class CsvFile extends File {
         parent::openReader();
         $this->line_current_number = 0;
     }
-    public function getData() : array{
+    public function getData(?string $delimiter = null) : array{
+        if(!is_null($delimiter)){
+            $this->setDelimiter($delimiter);
+        }
         $this->openReader();
         $data = array();
         while( ($row = $this->getNextRow()) !== FALSE ){
