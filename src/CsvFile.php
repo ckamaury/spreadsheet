@@ -64,6 +64,9 @@ class CsvFile extends File {
         return $row;
     }
     public function getRow(int $rowNumber){
+        if($rowNumber < 1){
+            Throw New \Exception("Row Number must be >= 1");
+        }
 
         if($rowNumber >= $this->row_current_number){
             $this->openReader();
@@ -71,7 +74,7 @@ class CsvFile extends File {
 
         do{
             $row = $this->getNextRow();
-        }while($this->row_current_number != $rowNumber || $row !== FALSE);
+        }while($this->row_current_number != $rowNumber && $row !== FALSE);
 
         return $row;
     }
