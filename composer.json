@@ -3,7 +3,7 @@
     "description": "PHP spreadsheet facilitator for export in CSV / XLSX based on PHPOffice/PhpSpreadsheet",
     "type": "library",
     "license": "MIT",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "minimum-stability": "stable",
     "authors": [
         {

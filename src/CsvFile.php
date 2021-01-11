@@ -39,7 +39,7 @@ class CsvFile extends File {
     //####### READER #######
     public function openReader(){
         parent::openReader();
-        $this->line_current_number = 0;
+        $this->row_current_number = 0;
     }
     public function getData(?string $delimiter = null) : array{
         if(!is_null($delimiter)){
@@ -68,7 +68,7 @@ class CsvFile extends File {
             Throw New \Exception("Row Number must be >= 1");
         }
 
-        if($rowNumber >= $this->row_current_number){
+        if($this->row_current_number >= $rowNumber){
             $this->openReader();
         }
 
